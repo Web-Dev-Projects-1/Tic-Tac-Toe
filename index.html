@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="icon" href="images/tic-tac-toe.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet"> 
+  </head>
+  <body>
+    <div class="game-settings-overlay">
+      <div id="pick-side">
+        <button class="pick-side-button" id="x">
+          <img src="images/x.png" alt="x" />
+        </button>
+        <button class="pick-side-button" id="o">
+          <img src="images/o.png" alt="o" />
+        </button>
+      </div>
+      <div id="difficulty">
+        <div id="easy" class="difficulty-choice">
+          <img src="images/calculator.png" />
+          <h1>Easy</h1>
+        </div>
+        <div id="normal" class="difficulty-choice">
+          <img src="images/computer.png" />
+          <h1>Normal</h1>
+        </div>
+        <div id="impossible" class="difficulty-choice">
+          <img src="images/advanced-tech.png" />
+          <h1>Impossible</h1>
+        </div>
+      </div>
+      <div id="start-button">
+        <div class="btn-primary">New Game</div>
+      </div>
+    </div>
+
+    <div class="main-container">
+      <h1 id="title">Tic Tac Toe</h1>
+      <div class="board-container">
+        <div id="diagonal-line-left"></div>
+        <div id="diagonal-line-right"></div>
+        <div id="board">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="result-section">
+      <div id="result-text"></div>
+      <div id="reset-button" class="btn-primary">Reset</div>
+    </div>
+
+    <script src="AI.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

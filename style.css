@@ -1,0 +1,298 @@
+:root {
+  --cell-size: 150px;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+  gap: 4rem;
+  text-align: center;
+}
+
+#title {
+  font-family: "Itim", cursive;
+  font-size: 5rem;
+  color: #ffac98;
+}
+
+.board-container {
+  position: relative;
+  margin: auto;
+}
+
+.btn-primary {
+  display: inline-block;
+  font-weight: normal;
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 0.25rem 1rem;
+  text-transform: uppercase;
+  font-size: 3rem;
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  cursor: pointer;
+  background-color: rgb(80, 79, 79);
+  color: white;
+}
+
+/* GAME SETTINGS OVERLAY SECTION */
+.game-settings-overlay {
+  position: absolute;
+  top: 0;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-color: black;
+  z-index: 2;
+  transition: all 0.75s;
+}
+
+#pick-side {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.pick-side-button {
+  width: 10rem;
+  background-color: rgb(79, 79, 79);
+  border: none;
+  padding: 5%;
+  transition: all 0.3s;
+}
+
+.pick-side-button img {
+  transition: all 0.3s;
+}
+
+.pick-side-button:hover img {
+  filter: brightness(0%);
+}
+
+#difficulty {
+  display: flex;
+  gap: 2rem;
+}
+
+.difficulty-choice {
+  background-color: rgb(79, 79, 79);
+  color: white;
+  font-weight: bolder;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 15rem;
+  height: 15rem;
+  transition: all 0.3s;
+}
+
+#difficulty img {
+  width: 50%;
+  height: auto;
+}
+
+#difficulty h1 {
+  margin-top: 1rem;
+}
+
+.pick-side-button:hover,
+.difficulty-choice:hover {
+  cursor: pointer;
+  background-color: white;
+  color: black;
+}
+
+.selected {
+  cursor: pointer;
+  background-color: white;
+  color: black;
+}
+
+.selected-img {
+  filter: brightness(0%);
+}
+
+/* MAIN BOARD SECTION */
+#board {
+  display: grid;
+  grid-template-columns: repeat(3, var(--cell-size));
+  grid-auto-rows: var(--cell-size);
+}
+
+#board > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid rgb(130, 130, 130);
+  overflow: hidden;
+}
+
+#board div:nth-child(3n - 2) {
+  border-left: none;
+}
+
+#board div:nth-child(3n) {
+  border-right: none;
+}
+
+#board div:nth-child(-n + 3) {
+  border-top: none;
+}
+
+#board div:nth-child(n + 7) {
+  border-bottom: none;
+}
+
+/* LETTERS */
+@keyframes wobble {
+  0% {
+    transform: scale(0);
+  }
+  70% {
+    transform: scale(1);
+  }
+  85% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.appear {
+  animation: wobble 0.4s;
+}
+
+/* LINES */
+#straight-line {
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+#diagonal-line-left,
+#diagonal-line-right {
+  display: none;
+  position: absolute;
+  width: 0px;
+  border-top: 24px solid #9bc53d;
+  top: -12px; /* accounting for border size */
+  transform-origin: left;
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+img {
+  width: 80%;
+  height: 80%;
+}
+
+#diagonal-line-left {
+  transform: rotateZ(45deg);
+}
+
+#diagonal-line-right {
+  left: calc(var(--cell-size) * 3);
+  transform: rotateZ(135deg);
+}
+
+/* RESULT */
+@keyframes popin {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes popout {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+.popin {
+  animation: popin 0.5s;
+}
+
+.popout {
+  animation: popout 0.5s;
+}
+
+#result-section {
+  display: none;
+  position: absolute;
+  top: 41%;
+  left: 7.5%;
+  text-align: center;
+  padding-bottom: 3rem;
+}
+
+#result-text {
+  margin-bottom: 1.5rem;
+  font-size: 3.5rem;
+}
+
+@media (max-width: 85rem) {
+  #result-section {
+    position: relative;
+    top: unset;
+    left: unset;
+  }
+}
+
+@media (max-width: 55rem) {
+  .pick-side-button {
+    max-width: 22vw;
+  }
+
+  .difficulty-choice {
+    font-size: 1.8vw;
+    max-width: 25vw;
+    max-height: 25vw;
+  }
+
+  #start-button .btn-primary {
+    font-size: 5vw;
+  }
+}
